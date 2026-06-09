@@ -1,0 +1,32 @@
+/* DICOM TEAM — цветовые токены бренда */
+/* Источник истины — dicom-design.css сайта dicom.team. */
+
+:root {
+  /* Базовая палитра */
+  --c-text:         #181431;
+  --c-text-soft:    #5B5B6B;
+  --c-text-muted:   #818181;
+  --c-bg:           #FFFFFF;
+  --c-bg-gray:      #F6F7F9;
+  --c-bg-dark:      #0F1B33;
+  --c-line:         #E5E7EB;
+  --c-accent:       #0D75B2;
+  --c-accent-d:     #0B6396;
+  --c-accent-soft:  #DDEAF5;
+  --c-cta-primary:  #0D75B2;
+
+  /* Направление: Битрикс24 */
+  --c-dir-bitrix:       #0DACE5;
+  --c-dir-bitrix-d:     #0A85B0;
+  --c-dir-bitrix-soft:  #DBF1F9;
+  --c-dir-bitrix-rgb:   13, 172, 229;
+
+  /* Направление: ИИ */
+  --c-dir-ai:           #0891B2;
+
+  /* Направление: Разработка */
+  --c-dir-web:          #475569;
+
+  /* Направление: Дизайн */
+  --c-dir-design:       #BE185D;
+}
