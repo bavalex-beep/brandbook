@@ -17,10 +17,12 @@
 
 | Роль | HEX | Где |
 |---|---|---|
-| Primary DICOM Blue | `#0D75B2` | корпус, основной цвет |
-| Glow Blue (подсветка) | `#3CB8FF` | глаза, свечения, индикаторы, акценты |
+| Primary DICOM Blue | `#0D75B2` | синие акценты и панели на корпусе, основной фирменный цвет |
+| Glow Blue (подсветка) | `#3CB8FF` | глаза, свечения, индикаторы |
 | Graphite (графитовый) | `#10182F` | контур, тёмные детали, суставы |
-| Light (светлый фон) | `#F5F7FA` | лицо-дисплей, светлые части корпуса |
+| Light (светлый фон) | `#F5F7FA` | корпус (основной материал), лицо-дисплей |
+
+Корпус **бело-синий**: основной материал — белый/светлый (`#F5F7FA`), поверх него синие (`#0D75B2`) акценты и панели, голубые (`#3CB8FF`) свечения, графитовые (`#10182F`) суставы и контуры.
 
 Других цветов в персонаже нет. Фиолетовый и оранжевый — **не использовать** (устаревшая версия).
 
@@ -38,7 +40,7 @@
 
 ## Обязательно
 
-Синий корпус `#0D75B2` · белое лицо-дисплей · голубые светящиеся глаза `#3CB8FF` · голубая подсветка/индикаторы · графитовый контур `#10182F` · округлые формы · крупная голова · компактное тело.
+Бело-синий корпус (белый `#F5F7FA` + синие акценты `#0D75B2`) · лицо-дисплей · голубые светящиеся глаза `#3CB8FF` · голубая подсветка/индикаторы · графитовые `#10182F` суставы и контур · округлые формы · крупная голова · компактное тело.
 
 ## Запрещено
 
@@ -56,6 +58,19 @@
 
 ## Подсказка для генерации (prompt)
 
-> Friendly corporate robot mascot named Dikomych: large rounded head, compact body, glossy blue body `#0D75B2`, white face-display `#F5F7FA` with two glowing light-blue eyes `#3CB8FF`, light-blue glowing chest indicator, graphite `#10182F` outlines and joints, rounded minimalist engineering style, clean studio background. No purple, no orange, no weapons, friendly expression.
+> Friendly corporate robot mascot named Dikomych: large rounded head, compact body, glossy white body `#F5F7FA` with blue `#0D75B2` accent panels, face-display with two glowing light-blue eyes `#3CB8FF`, light-blue glowing chest indicator, graphite `#10182F` joints and outlines, rounded minimalist engineering style, clean studio background. No purple, no orange, no weapons, friendly expression.
 
 Перед использованием сверь результат с утверждённым листом персонажа (ссылка выше).
+
+## Эталоны по частям
+
+Детальные рендеры конструкции в нескольких ракурсах:
+
+| Часть | Файл | Raw-ссылка |
+|---|---|---|
+| Голова | [`assets/parts/head.png`](assets/parts/head.png) | `…/main/mascot/assets/parts/head.png` |
+| Рука | [`assets/parts/arm.png`](assets/parts/arm.png) | `…/main/mascot/assets/parts/arm.png` |
+| Туловище | [`assets/parts/torso.png`](assets/parts/torso.png) | `…/main/mascot/assets/parts/torso.png` |
+| Нога | [`assets/parts/leg.png`](assets/parts/leg.png) | `…/main/mascot/assets/parts/leg.png` |
+
+Полный raw-префикс: `https://raw.githubusercontent.com/bavalex-beep/brandbook/main/mascot/`
