@@ -1,0 +1,29 @@
+/* DICOM TEAM — нецветовые токены дизайн-системы */
+/* Источник истины — dicom-design.css сайта dicom.team (:root). */
+
+:root {
+  /* ---- Шрифт ---- */
+  --f-body: 'Roboto', system-ui, sans-serif;
+
+  /* ---- Сетка / отступы ---- */
+  --max:         1440px;                    /* макс. ширина контента */
+  --gutter:      clamp(20px, 5vw, 100px);   /* боковые поля */
+  --section-pad: clamp(64px, 10vw, 140px);  /* вертикальные отступы секций */
+  --gap-island:  clamp(24px, 4vw, 48px);    /* отступ между секциями-островами */
+  --gutter-h:    clamp(0px, 2vw, 24px);     /* горизонтальный отступ островов от края */
+  --r-island:    clamp(20px, 2.5vw, 32px);  /* радиус скругления островов */
+
+  /* ---- Тени ---- */
+  --shadow-sm: 0 2px 8px rgba(24,20,49,.04);
+  --shadow:    0 4px 24px rgba(24,20,49,.06);
+  --shadow-md: 0 12px 32px rgba(24,20,49,.10);
+  --shadow-lg: 0 24px 60px -20px rgba(24,20,49,.18);
+
+  /* ---- Радиусы ---- */
+  --r-sm: 6px;
+  --r:    16px;
+  --r-lg: 24px;
+
+  /* ---- Переход ---- */
+  --t: 220ms cubic-bezier(.4, 0, .2, 1);
+}

@@ -11,8 +11,9 @@
 | [`logo/`](logo/) | Логотип во всех форматах (SVG/PNG), правила использования |
 | [`mascot/`](mascot/) | Дикомыч — официальный маскот: [спецификация](mascot/dikomych.md) и ассеты |
 | [`colors/`](colors/) | Палитра ([palette.md](colors/palette.md)), токены [CSS](colors/tokens.css) / [JSON](colors/tokens.json), swatches |
+| [`tokens/`](tokens/) | Нецветовые токены: сетка, тени, радиусы, переход, шрифт ([system.css](tokens/system.css)) |
 | [`directions/`](directions/) | 4 продуктовых направления и их цвета |
-| [`typography/`](typography/) | Шрифты, веса, шкала |
+| [`typography/`](typography/) | Шрифт **Roboto**, веса, шкала, подключение |
 | [`voice-tone/`](voice-tone/) | [Голос](voice-tone/voice.md), [тезисы](voice-tone/messaging.md), [boilerplate и цифры](voice-tone/boilerplate.md) |
 | [`components/`](components/) | UI-паттерны, ссылка на стайлгайд |
 | [`templates/`](templates/) | Презентации, документы, email-подпись, соцсети |

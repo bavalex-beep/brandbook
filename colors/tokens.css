@@ -1,8 +1,8 @@
 /* DICOM TEAM — цветовые токены бренда */
-/* Источник истины — dicom-design.css сайта dicom.team. */
+/* Источник истины — dicom-design.css сайта dicom.team (:root). */
 
 :root {
-  /* Базовая палитра */
+  /* ---- Базовая палитра ---- */
   --c-text:         #181431;
   --c-text-soft:    #5B5B6B;
   --c-text-muted:   #818181;
@@ -13,26 +13,45 @@
   --c-accent:       #0D75B2;
   --c-accent-d:     #0B6396;
   --c-accent-soft:  #DDEAF5;
-  --c-cta-primary:  #0D75B2;
 
-  /* Направление: Битрикс24 */
-  --c-dir-bitrix:       #0DACE5;
-  --c-dir-bitrix-d:     #0A85B0;
-  --c-dir-bitrix-soft:  #DBF1F9;
-  --c-dir-bitrix-rgb:   13, 172, 229;
+  /* ---- CTA (всегда синяя, не зависит от .dir-*) ---- */
+  --c-cta-primary:    #0D75B2;
+  --c-cta-primary-d:  #0B6396;
 
-  /* Направление: ИИ */
-  --c-dir-ai:           #0891B2;
+  /* ---- Цифры секций ---- */
+  --c-number-light: #EEF0F4;             /* на светлых секциях */
+  --c-number-dark:  rgba(13,117,178,.18); /* на тёмных секциях */
 
-  /* Направление: Разработка */
-  --c-dir-web:          #475569;
+  /* ---- Направления (триада: основной / -d hover / -soft фон) ---- */
+  --c-dir-bitrix:      #0DACE5;  /* cyan — Битрикс24 */
+  --c-dir-bitrix-d:    #0A85B0;
+  --c-dir-bitrix-soft: #DBF1F9;
 
-  /* Направление: Дизайн */
-  --c-dir-design:       #BE185D;
+  --c-dir-ai:          #0891B2;  /* приглушённый cyan — ИИ */
+  --c-dir-ai-d:        #06738F;
+  --c-dir-ai-soft:     #CEE9EE;
 
-  /* Маскот — Дикомыч */
-  --c-mascot-main:      #0D75B2;  /* корпус (= --c-accent) */
-  --c-mascot-glow:      #3CB8FF;  /* глаза, подсветка, акценты */
-  --c-mascot-graphite:  #10182F;  /* контур, тёмные детали */
-  --c-mascot-light:     #F5F7FA;  /* лицо-дисплей, светлые части */
+  --c-dir-web:         #475569;  /* графит — Разработка */
+  --c-dir-web-d:       #334155;
+  --c-dir-web-soft:    #E2E6EA;
+
+  --c-dir-design:      #BE185D;  /* бургунди-роуз — Дизайн */
+  --c-dir-design-d:    #9D1450;
+  --c-dir-design-soft: #FAE3EC;
+
+  /* ---- RGB-варианты для rgba(var(--x), .N) ---- */
+  --c-accent-rgb:     13, 117, 178;
+  --c-dir-bitrix-rgb: 13, 172, 229;
+  --c-dir-ai-rgb:     8, 145, 178;
+  --c-dir-web-rgb:    71, 85, 105;
+  --c-dir-design-rgb: 190, 24, 93;
+
+  /* ---- Тень акцента ---- */
+  --c-accent-shadow:  rgba(13, 117, 178, .18);
+
+  /* ---- Маскот (Дикомыч) ---- */
+  --c-mascot-main:      #0D75B2;  /* синие акценты корпуса (= --c-accent) */
+  --c-mascot-glow:      #3CB8FF;  /* глаза, подсветка, индикаторы */
+  --c-mascot-graphite:  #10182F;  /* контур, суставы */
+  --c-mascot-light:     #F5F7FA;  /* корпус (материал), лицо-дисплей */
 }

@@ -1,0 +1,12 @@
+/* DICOM TEAM — фирменный шрифт Roboto (Google Fonts) */
+/* Вариант А: подключение без локальных файлов. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+:root {
+  --f-body: 'Roboto', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--f-body);
+}
