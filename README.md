@@ -9,6 +9,7 @@
 | Раздел | Что внутри |
 |---|---|
 | [`logo/`](logo/) | Логотип во всех форматах (SVG/PNG), правила использования |
+| [`mascot/`](mascot/) | Дикомыч — официальный маскот: [спецификация](mascot/dikomych.md) и ассеты |
 | [`colors/`](colors/) | Палитра ([palette.md](colors/palette.md)), токены [CSS](colors/tokens.css) / [JSON](colors/tokens.json), swatches |
 | [`directions/`](directions/) | 4 продуктовых направления и их цвета |
 | [`typography/`](typography/) | Шрифты, веса, шкала |

@@ -8,7 +8,8 @@
 - Первичная структура brand book: logo, colors, directions, typography, voice-tone, components, templates, imagery, examples.
 - Цветовые токены (CSS + JSON) из `dicom-design.css`.
 - Канонические цифры и boilerplate (синхронизировано с `/about/manifest/` от 01.06.2026).
-- `imagery/visual-language.md` — правила для изображений (свободный центр, элементы по краям, блюр к центру, инженерный стиль, без перегруженности).
+- `imagery/visual-language.md` — правила для изображений (hero: квадрат/центр; обложки: свободная левая зона, блюр слева; инженерный стиль, без перегруженности).
+- `mascot/dikomych.md` — спецификация маскота Дикомыч (v1.0): характер, визуальный образ, правила использования.
 
 ### TODO
 - Положить файлы логотипа (SVG/PNG) в `logo/`.
