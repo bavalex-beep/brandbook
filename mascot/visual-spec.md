@@ -74,3 +74,5 @@
 | Нога | [`assets/parts/leg.png`](assets/parts/leg.png) | `…/main/mascot/assets/parts/leg.png` |
 
 Полный raw-префикс: `https://raw.githubusercontent.com/bavalex-beep/brandbook/main/mascot/`
+
+**Один файл-референс** (все части на одном листе, удобно прикреплять в чат с ИИ): [`assets/dikomych-parts-reference.png`](assets/dikomych-parts-reference.png) · raw: `…/main/mascot/assets/dikomych-parts-reference.png`

@@ -13,6 +13,7 @@
 - `mascot/assets/dikomych-character-sheet.png` — финальный лист персонажа (v2.0).
 - `mascot/visual-spec.md` — техническая визуальная спека персонажа (raw-ссылка на эталон, цвета, пропорции, prompt для генерации).
 - `mascot/assets/parts/` — детальные рендеры конструкции (head, arm, torso, leg) в нескольких ракурсах.
+- `mascot/assets/dikomych-parts-reference.png` — сводный collage-референс (все части + палитра) для прикрепления в чат с ИИ.
 - `logo/svg/logo.svg` — логотип DICOM TEAM.
 
 ### Changed
