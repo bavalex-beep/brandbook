@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DICOM TEAM — Стайлгайд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== Канонические токены (из colors/tokens.css + tokens/system.css) ====== */
+:root{
+  --c-text:#181431; --c-text-soft:#5B5B6B; --c-text-muted:#818181;
+  --c-bg:#FFFFFF; --c-bg-gray:#F6F7F9; --c-bg-dark:#0F1B33; --c-line:#E5E7EB;
+  --c-accent:#0D75B2; --c-accent-d:#0B6396; --c-accent-soft:#DDEAF5;
+  --c-cta-primary:#0D75B2; --c-cta-primary-d:#0B6396;
+  --c-number-light:#EEF0F4; --c-number-dark:rgba(13,117,178,.18);
+  --c-dir-bitrix:#0DACE5; --c-dir-bitrix-d:#0A85B0; --c-dir-bitrix-soft:#DBF1F9;
+  --c-dir-ai:#0891B2; --c-dir-ai-d:#06738F; --c-dir-ai-soft:#CEE9EE;
+  --c-dir-web:#475569; --c-dir-web-d:#334155; --c-dir-web-soft:#E2E6EA;
+  --c-dir-design:#BE185D; --c-dir-design-d:#9D1450; --c-dir-design-soft:#FAE3EC;
+  --c-accent-rgb:13,117,178; --c-accent-shadow:rgba(13,117,178,.18);
+  --f-body:'Roboto',system-ui,sans-serif;
+  --max:1440px; --r-sm:6px; --r:16px; --r-lg:24px;
+  --shadow-sm:0 2px 8px rgba(24,20,49,.04);
+  --shadow:0 4px 24px rgba(24,20,49,.06);
+  --shadow-md:0 12px 32px rgba(24,20,49,.10);
+  --shadow-lg:0 24px 60px -20px rgba(24,20,49,.18);
+  --t:220ms cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--f-body);color:var(--c-text);background:var(--c-bg-gray);line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 24px 96px}
+header.top{background:var(--c-bg);border-bottom:1px solid var(--c-line)}
+header.top .wrap{padding:32px 24px}
+h1{font-weight:700;font-size:34px;margin:0 0 6px}
+.sub{color:var(--c-text-soft);font-size:16px}
+h2{font-weight:700;font-size:22px;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--c-line)}
+h3{font-weight:600;font-size:15px;color:var(--c-text-soft);margin:24px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+.card{background:var(--c-bg);border:1px solid var(--c-line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:24px}
+.grid{display:grid;gap:16px}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.swatch{border:1px solid var(--c-line);border-radius:var(--r-sm);overflow:hidden;background:var(--c-bg)}
+.swatch .chip{height:72px}
+.swatch .meta{padding:8px 10px}
+.swatch .name{font-weight:600;font-size:13px}
+.swatch .hex{font-size:12px;color:var(--c-text-muted);font-variant-numeric:tabular-nums}
+.swatch .use{font-size:11px;color:var(--c-text-muted);margin-top:2px}
+/* кнопки */
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;border-radius:var(--r-sm);
+  padding:11px 22px;cursor:pointer;border:1px solid transparent;transition:background var(--t),color var(--t),border-color var(--t)}
+.btn--primary{background:var(--c-cta-primary);color:#fff}
+.btn--primary:hover{background:var(--c-cta-primary-d)}
+.btn--ghost{background:transparent;color:var(--c-accent);border-color:var(--c-accent)}
+.btn--ghost:hover{background:var(--c-accent-soft)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+/* бейджи */
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;
+  background:var(--c-accent-soft);color:var(--c-accent)}
+/* демонстрация типографики */
+.type-row{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--c-line);padding:12px 0}
+.type-row .lab{width:130px;color:var(--c-text-muted);font-size:13px}
+/* секции */
+.sec{border-radius:var(--r);padding:28px;margin-bottom:12px}
+.sec--light{background:var(--c-bg);box-shadow:var(--shadow-sm)}
+.sec--gray{background:var(--c-bg-gray);border:1px solid var(--c-line)}
+.sec--dark{background:var(--c-bg-dark);color:#fff}
+.sec small{display:block;opacity:.7;font-size:12px;margin-top:4px}
+/* тени/радиусы */
+.box{height:90px;border-radius:var(--r);background:var(--c-bg);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--c-text-muted)}
+/* карточка направления */
+.dircard{padding:20px;border-radius:var(--r);border:1px solid var(--c-line);background:var(--c-bg);box-shadow:var(--shadow-sm)}
+.dircard .badge{background:var(--c-accent-soft);color:var(--c-accent)}
+.dircard .num{font-weight:600;font-size:32px;color:var(--c-accent)}
+.dircard .ln{color:var(--c-accent);font-weight:600;text-decoration:none}
+.dir-bitrix24{--c-accent:var(--c-dir-bitrix);--c-accent-d:var(--c-dir-bitrix-d);--c-accent-soft:var(--c-dir-bitrix-soft)}
+.dir-ai{--c-accent:var(--c-dir-ai);--c-accent-d:var(--c-dir-ai-d);--c-accent-soft:var(--c-dir-ai-soft)}
+.dir-web{--c-accent:var(--c-dir-web);--c-accent-d:var(--c-dir-web-d);--c-accent-soft:var(--c-dir-web-soft)}
+.dir-design{--c-accent:var(--c-dir-design);--c-accent-d:var(--c-dir-design-d);--c-accent-soft:var(--c-dir-design-soft)}
+.note{font-size:13px;color:var(--c-text-soft);background:var(--c-accent-soft);border-radius:var(--r-sm);padding:12px 14px;margin:8px 0}
+code{background:var(--c-bg-gray);border:1px solid var(--c-line);border-radius:4px;padding:1px 6px;font-size:12px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>DICOM TEAM — Стайлгайд</h1>
+  <div class="sub">Живой справочник фирменного стиля на канонических токенах. Источник истины — <code>colors/tokens.css</code>, <code>tokens/system.css</code> (синхронизированы с боевым <code>dicom-design.css</code>).</div>
+</div></header>
+
+<div class="wrap">
+
+  <div class="note">Это самодостаточная версия в брендбуке (открывается офлайн). Боевой стайлгайд на сайте сейчас недоступен — этот файл его замещает.</div>
+
+  <h2>1. Базовая палитра</h2>
+  <div class="sw">
+    <div class="swatch"><div class="chip" style="background:#181431"></div><div class="meta"><div class="name">text</div><div class="hex">#181431</div><div class="use">основной текст</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#5B5B6B"></div><div class="meta"><div class="name">text-soft</div><div class="hex">#5B5B6B</div><div class="use">второстепенный</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#818181"></div><div class="meta"><div class="name">text-muted</div><div class="hex">#818181</div><div class="use">подписи, мета</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--c-line)"></div><div class="meta"><div class="name">bg</div><div class="hex">#FFFFFF</div><div class="use">фон</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F6F7F9"></div><div class="meta"><div class="name">bg-gray</div><div class="hex">#F6F7F9</div><div class="use">section--gray</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#0F1B33"></div><div class="meta"><div class="name">bg-dark</div><div class="hex">#0F1B33</div><div class="use">section--dark</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#E5E7EB"></div><div class="meta"><div class="name">line</div><div class="hex">#E5E7EB</div><div class="use">разделители</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#0D75B2"></div><div class="meta"><div class="name">accent</div><div class="hex">#0D75B2</div><div class="use">акцент (синий)</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#0B6396"></div><div class="meta"><div class="name">accent-d</div><div class="hex">#0B6396</div><div class="use">hover</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#DDEAF5"></div><div class="meta"><div class="name">accent-soft</div><div class="hex">#DDEAF5</div><div class="use">фон бейджей</div></div></div>
+  </div>
+
+  <h2>2. Цвета направлений</h2>
+  <p class="sub">Каждое направление переопределяет <code>--c-accent</code> через класс <code>.dir-*</code>. Карточки ниже одинаковые — отличается только скоуп.</p>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+    <div class="dircard dir-bitrix24"><span class="badge">Битрикс24</span><div class="num">01</div><p>Внедрение и доработка. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
+    <div class="dircard dir-ai"><span class="badge">ИИ</span><div class="num">02</div><p>Ассистенты и агенты. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
+    <div class="dircard dir-web"><span class="badge">Разработка</span><div class="num">03</div><p>Сайты на 1С-Битрикс. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
+    <div class="dircard dir-design"><span class="badge">Дизайн</span><div class="num">04</div><p>Интерфейсы и UX. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
+  </div>
+  <div class="note">CTA-кнопка <code>.btn--primary</code> остаётся синей в любом направлении — она использует <code>--c-cta-primary</code>, а не <code>--c-accent</code>.</div>
+
+  <h2>3. Типографика — Roboto</h2>
+  <div class="card">
+    <div class="type-row"><span class="lab">700 Bold</span><span style="font-weight:700;font-size:30px">Заголовок H1</span></div>
+    <div class="type-row"><span class="lab">600 SemiBold</span><span style="font-weight:600;font-size:22px">Подзаголовок / цифры секций</span></div>
+    <div class="type-row"><span class="lab">500 Medium</span><span style="font-weight:500;font-size:17px">Акцентная подпись</span></div>
+    <div class="type-row"><span class="lab">400 Regular</span><span style="font-weight:400;font-size:16px">Основной текст. The quick brown fox. Съешь ещё этих булочек.</span></div>
+  </div>
+
+  <h2>4. Кнопки</h2>
+  <div class="card"><div class="row">
+    <button class="btn btn--primary">Primary (CTA)</button>
+    <button class="btn btn--ghost">Ghost</button>
+    <span class="dir-design"><button class="btn btn--ghost">Ghost в .dir-design</button></span>
+  </div></div>
+
+  <h2>5. Бейджи</h2>
+  <div class="card"><div class="row">
+    <span class="badge">Базовый</span>
+    <span class="dir-bitrix24"><span class="badge">Битрикс24</span></span>
+    <span class="dir-ai"><span class="badge">ИИ</span></span>
+    <span class="dir-design"><span class="badge">Дизайн</span></span>
+  </div></div>
+
+  <h2>6. Секции</h2>
+  <div class="sec sec--light">section--light<small>белая обёртка, тень --shadow-sm</small></div>
+  <div class="sec sec--gray">section--gray<small>фон #F6F7F9 — чтобы белые карточки отделялись</small></div>
+  <div class="sec sec--dark">section--dark<small>фон #0F1B33</small></div>
+
+  <h2>7. Тени</h2>
+  <div class="sw">
+    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-sm)">--shadow-sm</div></div>
+    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow)">--shadow</div></div>
+    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-md)">--shadow-md</div></div>
+    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-lg)">--shadow-lg</div></div>
+  </div>
+
+  <h2>8. Радиусы</h2>
+  <div class="sw">
+    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r-sm)">--r-sm 6px</div></div>
+    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r)">--r 16px</div></div>
+    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r-lg)">--r-lg 24px</div></div>
+  </div>
+
+  <h2>9. Маскот</h2>
+  <div class="card"><div class="row">
+    <img src="../../mascot/assets/dikomych-parts-reference.png" alt="Дикомыч" style="max-width:100%;border-radius:var(--r-sm)">
+  </div><p class="sub">Полная спецификация — <code>mascot/dikomych.md</code> и <code>mascot/visual-spec.md</code>.</p></div>
+
+  <p class="sub" style="margin-top:40px">© DICOM TEAM. Стайлгайд синхронизируется с <code>colors/</code> и <code>tokens/</code>. При изменении токенов обнови и этот файл.</p>
+
+</div>
+</body>
+</html>

@@ -37,7 +37,7 @@
 
 ## Шкала
 
-Размеры заголовков и текста масштабируются от базового body. Точные значения — в живом стайлгайде: https://dicom.team/styleguide/
+Размеры заголовков и текста масштабируются от базового body. Точные значения — в стайлгайде: [`../components/styleguide/index.html`](../components/styleguide/index.html) (офлайн) или `https://dicom.team/styleguide/` (когда восстановлен на сайте).
 
 ## Применение
 

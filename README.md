@@ -2,7 +2,7 @@
 
 Единый источник правды по фирменному стилю DICOM TEAM: логотип, цвета, типографика, голос бренда, шаблоны.
 
-Сайт: https://dicom.team · Живой стайлгайд: https://dicom.team/styleguide/
+Сайт: https://dicom.team · Стайлгайд: [офлайн](components/styleguide/index.html) · [на сайте](https://dicom.team/styleguide/) (восстанавливается)
 
 ## Структура
 
@@ -15,7 +15,7 @@
 | [`directions/`](directions/) | 4 продуктовых направления и их цвета |
 | [`typography/`](typography/) | Шрифт **Roboto**, веса, шкала, подключение |
 | [`voice-tone/`](voice-tone/) | [Голос](voice-tone/voice.md), [тезисы](voice-tone/messaging.md), [boilerplate и цифры](voice-tone/boilerplate.md) |
-| [`components/`](components/) | UI-паттерны, ссылка на стайлгайд |
+| [`components/`](components/) | UI-паттерны + офлайн-[стайлгайд](components/styleguide/index.html) на токенах |
 | [`templates/`](templates/) | Презентации, документы, email-подпись, соцсети |
 | [`imagery/`](imagery/) | Фотостиль, иконки, паттерны |
 | [`examples/`](examples/) | Примеры применения, do / don't |
