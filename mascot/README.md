@@ -1,10 +1,16 @@
-# Маскот — Дикомыч
+# Маскоты DICOM TEAM
 
-Официальный персонаж DICOM TEAM.
+Официальные персонажи: **Дикомыч** (инженер) и **Дизайныч** (дизайнер) — пара.
 
-- **[dikomych.md](dikomych.md)** — полное описание: характер, визуальный образ, правила использования, что нельзя.
-- **[visual-spec.md](visual-spec.md)** — техническая визуальная спека для точного воспроизведения (ИИ-генерация, дизайн): цвета, пропорции, prompt, ссылка на эталон.
-- **`assets/`** — `dikomych-character-sheet.png` (лист v2.0), `dikomych-parts-reference.png` (collage), `parts/` (детали: голова, рука, туловище, нога), `scenes/` (сцены: welcome, building-site, building-site-back, working-on-site).
+## Дикомыч — основной маскот (синий, инженер)
 
-> Спецификация (v2.0) готова. Новые файлы персонажа (позы, эмоции, сцены по направлениям) кладём в `assets/`.
-> Дикомыч не заменяет логотип — см. правила в `dikomych.md`.
+- **[dikomych.md](dikomych.md)** — полное описание: характер, визуальный образ, правила, что нельзя.
+- **[visual-spec.md](visual-spec.md)** — техническая спека для точного воспроизведения (цвета, пропорции, prompt, эталон).
+- **`assets/`** — `dikomych-character-sheet.png` (лист v2.0), `dikomych-parts-reference.png` (collage), `parts/` (голова, рука, туловище, нога), `scenes/` (welcome, building-site, building-site-back, working-on-site + пара `dikomych-and-dizainych.png`).
+
+## Дизайныч — маскот направления «Дизайн» (бургунди, дизайнер)
+
+- **[dizainych/dizainych.md](dizainych/dizainych.md)** — описание, цвета (`#BE185D` / `#FF4D90` / `#10182F` / `#F5F7FA`), правила.
+- **`dizainych/assets/`** — `character-sheet.png` + `parts/` (голова, туловище, нога).
+
+> Персонажи не заменяют логотип. Дикомыч и Дизайныч — официальная пара «инженерия + дизайн».

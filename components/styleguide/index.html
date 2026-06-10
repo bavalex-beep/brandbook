@@ -1,168 +1,989 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DICOM TEAM — Стайлгайд</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ====== Канонические токены (из colors/tokens.css + tokens/system.css) ====== */
-:root{
-  --c-text:#181431; --c-text-soft:#5B5B6B; --c-text-muted:#818181;
-  --c-bg:#FFFFFF; --c-bg-gray:#F6F7F9; --c-bg-dark:#0F1B33; --c-line:#E5E7EB;
-  --c-accent:#0D75B2; --c-accent-d:#0B6396; --c-accent-soft:#DDEAF5;
-  --c-cta-primary:#0D75B2; --c-cta-primary-d:#0B6396;
-  --c-number-light:#EEF0F4; --c-number-dark:rgba(13,117,178,.18);
-  --c-dir-bitrix:#0DACE5; --c-dir-bitrix-d:#0A85B0; --c-dir-bitrix-soft:#DBF1F9;
-  --c-dir-ai:#0891B2; --c-dir-ai-d:#06738F; --c-dir-ai-soft:#CEE9EE;
-  --c-dir-web:#475569; --c-dir-web-d:#334155; --c-dir-web-soft:#E2E6EA;
-  --c-dir-design:#BE185D; --c-dir-design-d:#9D1450; --c-dir-design-soft:#FAE3EC;
-  --c-accent-rgb:13,117,178; --c-accent-shadow:rgba(13,117,178,.18);
-  --f-body:'Roboto',system-ui,sans-serif;
-  --max:1440px; --r-sm:6px; --r:16px; --r-lg:24px;
-  --shadow-sm:0 2px 8px rgba(24,20,49,.04);
-  --shadow:0 4px 24px rgba(24,20,49,.06);
-  --shadow-md:0 12px 32px rgba(24,20,49,.10);
-  --shadow-lg:0 24px 60px -20px rgba(24,20,49,.18);
-  --t:220ms cubic-bezier(.4,0,.2,1);
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:var(--f-body);color:var(--c-text);background:var(--c-bg-gray);line-height:1.55}
-.wrap{max-width:1100px;margin:0 auto;padding:48px 24px 96px}
-header.top{background:var(--c-bg);border-bottom:1px solid var(--c-line)}
-header.top .wrap{padding:32px 24px}
-h1{font-weight:700;font-size:34px;margin:0 0 6px}
-.sub{color:var(--c-text-soft);font-size:16px}
-h2{font-weight:700;font-size:22px;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--c-line)}
-h3{font-weight:600;font-size:15px;color:var(--c-text-soft);margin:24px 0 10px;text-transform:uppercase;letter-spacing:.04em}
-.card{background:var(--c-bg);border:1px solid var(--c-line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:24px}
-.grid{display:grid;gap:16px}
-.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.swatch{border:1px solid var(--c-line);border-radius:var(--r-sm);overflow:hidden;background:var(--c-bg)}
-.swatch .chip{height:72px}
-.swatch .meta{padding:8px 10px}
-.swatch .name{font-weight:600;font-size:13px}
-.swatch .hex{font-size:12px;color:var(--c-text-muted);font-variant-numeric:tabular-nums}
-.swatch .use{font-size:11px;color:var(--c-text-muted);margin-top:2px}
-/* кнопки */
-.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;border-radius:var(--r-sm);
-  padding:11px 22px;cursor:pointer;border:1px solid transparent;transition:background var(--t),color var(--t),border-color var(--t)}
-.btn--primary{background:var(--c-cta-primary);color:#fff}
-.btn--primary:hover{background:var(--c-cta-primary-d)}
-.btn--ghost{background:transparent;color:var(--c-accent);border-color:var(--c-accent)}
-.btn--ghost:hover{background:var(--c-accent-soft)}
-.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-/* бейджи */
-.badge{display:inline-block;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;
-  background:var(--c-accent-soft);color:var(--c-accent)}
-/* демонстрация типографики */
-.type-row{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--c-line);padding:12px 0}
-.type-row .lab{width:130px;color:var(--c-text-muted);font-size:13px}
-/* секции */
-.sec{border-radius:var(--r);padding:28px;margin-bottom:12px}
-.sec--light{background:var(--c-bg);box-shadow:var(--shadow-sm)}
-.sec--gray{background:var(--c-bg-gray);border:1px solid var(--c-line)}
-.sec--dark{background:var(--c-bg-dark);color:#fff}
-.sec small{display:block;opacity:.7;font-size:12px;margin-top:4px}
-/* тени/радиусы */
-.box{height:90px;border-radius:var(--r);background:var(--c-bg);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--c-text-muted)}
-/* карточка направления */
-.dircard{padding:20px;border-radius:var(--r);border:1px solid var(--c-line);background:var(--c-bg);box-shadow:var(--shadow-sm)}
-.dircard .badge{background:var(--c-accent-soft);color:var(--c-accent)}
-.dircard .num{font-weight:600;font-size:32px;color:var(--c-accent)}
-.dircard .ln{color:var(--c-accent);font-weight:600;text-decoration:none}
-.dir-bitrix24{--c-accent:var(--c-dir-bitrix);--c-accent-d:var(--c-dir-bitrix-d);--c-accent-soft:var(--c-dir-bitrix-soft)}
-.dir-ai{--c-accent:var(--c-dir-ai);--c-accent-d:var(--c-dir-ai-d);--c-accent-soft:var(--c-dir-ai-soft)}
-.dir-web{--c-accent:var(--c-dir-web);--c-accent-d:var(--c-dir-web-d);--c-accent-soft:var(--c-dir-web-soft)}
-.dir-design{--c-accent:var(--c-dir-design);--c-accent-d:var(--c-dir-design-d);--c-accent-soft:var(--c-dir-design-soft)}
-.note{font-size:13px;color:var(--c-text-soft);background:var(--c-accent-soft);border-radius:var(--r-sm);padding:12px 14px;margin:8px 0}
-code{background:var(--c-bg-gray);border:1px solid var(--c-line);border-radius:4px;padding:1px 6px;font-size:12px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>DICOM TEAM — Дизайн-система</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Актуальные CSS-модули dicom_v2 -->
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/base.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/layout.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/hero.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/components.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/pages.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/responsive.css">
+    <link rel="stylesheet" href="https://dicom.team/local/templates/dicom_v2/css/dicom-design.css">
+
+    <style>
+        /* Стили самой страницы дизайн-системы (не для копирования в проект) */
+        body { padding-bottom: 80px; }
+        .sg-toc {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--c-line);
+            padding: 14px var(--gutter);
+            display: flex; flex-wrap: wrap; gap: 4px 20px;
+            font-size: 13px;
+        }
+        .sg-toc a {
+            color: var(--c-text-soft);
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 4px 0;
+            transition: color .15s;
+        }
+        .sg-toc a:hover { color: var(--c-accent); }
+        .sg-section {
+            padding: 56px var(--gutter);
+            border-bottom: 1px solid var(--c-line);
+            scroll-margin-top: 70px;
+        }
+        .sg-label {
+            display: inline-block;
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--c-accent); font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .sg-title {
+            font-size: 28px; font-weight: 600; letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+        .sg-desc {
+            color: var(--c-text-soft); font-size: 15px;
+            max-width: 720px; margin-bottom: 28px;
+        }
+        .sg-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px; }
+        .sg-swatch { width: 130px; }
+        .sg-color { width: 100%; height: 76px; border-radius: 8px; border: 1px solid var(--c-line); margin-bottom: 8px; }
+        .sg-color-name { font-size: 13px; font-weight: 600; }
+        .sg-color-value { font-size: 12px; color: var(--c-text-muted); font-family: ui-monospace, monospace; }
+        .sg-color-var { font-size: 11px; color: var(--c-accent); font-family: ui-monospace, monospace; }
+        .sg-code {
+            font-family: ui-monospace, "SF Mono", Consolas, monospace;
+            font-size: 12.5px;
+            background: var(--c-bg-dark);
+            color: #C5D7E8;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-top: 16px;
+            display: block;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.55;
+        }
+        .sg-code .tag { color: #82AAFF; }
+        .sg-code .attr { color: #C792EA; }
+        .sg-code .str { color: #C3E88D; }
+        .sg-demo {
+            padding: 24px;
+            background: var(--c-bg-gray);
+            border-radius: var(--r);
+            margin-top: 8px;
+        }
+        .sg-demo--dark { background: var(--c-bg-dark); color: #fff; }
+        .sg-demo--white { background: #fff; border: 1px solid var(--c-line); }
+        .sg-note {
+            font-size: 13px; color: var(--c-text-muted);
+            margin-top: 10px; font-style: italic;
+        }
+        .sg-h3 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; }
+
+        /* Сетка цветов направлений */
+        .sg-dir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+        .sg-dir-card {
+            background: #fff;
+            border: 1px solid var(--c-line);
+            border-radius: var(--r);
+            padding: 18px;
+        }
+        .sg-dir-card__head {
+            font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 14px;
+        }
+        .sg-dir-card__dot {
+            width: 14px; height: 14px; border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sg-dir-card__row {
+            display: grid;
+            grid-template-columns: 36px 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 12px;
+            border-top: 1px solid var(--c-line);
+        }
+        .sg-dir-card__row:first-of-type { border-top: 0; }
+        .sg-dir-card__sw {
+            width: 36px; height: 28px; border-radius: 4px;
+            border: 1px solid rgba(0,0,0,.06);
+        }
+        .sg-dir-card__hex {
+            font-family: ui-monospace, monospace;
+            color: var(--c-text-muted);
+            font-size: 11px;
+        }
+        .sg-dir-card__var {
+            font-family: ui-monospace, monospace;
+            font-size: 11px;
+            color: var(--c-text);
+        }
+    </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <h1>DICOM TEAM — Стайлгайд</h1>
-  <div class="sub">Живой справочник фирменного стиля на канонических токенах. Источник истины — <code>colors/tokens.css</code>, <code>tokens/system.css</code> (синхронизированы с боевым <code>dicom-design.css</code>).</div>
-</div></header>
 
-<div class="wrap">
+<div class="page">
 
-  <div class="note">Это самодостаточная версия в брендбуке (открывается офлайн). Боевой стайлгайд на сайте сейчас недоступен — этот файл его замещает.</div>
+<!-- ============ ОГЛАВЛЕНИЕ ============ -->
+<nav class="sg-toc">
+    <a href="#colors">Цвета</a>
+    <a href="#directions">Направления</a>
+    <a href="#typography">Типографика</a>
+    <a href="#badges">Бейджи</a>
+    <a href="#buttons">Кнопки</a>
+    <a href="#section-head">Шапки секций</a>
+    <a href="#sections">Фоны секций</a>
+    <a href="#cards">Карточки</a>
+    <a href="#service-cards">Карточки услуг</a>
+    <a href="#format-cards">Карточки форматов</a>
+    <a href="#partner-tiers">Партнёрские уровни</a>
+    <a href="#media-row">Media-row</a>
+    <a href="#hero">Hero и слайдер</a>
+    <a href="#stats">Статистика</a>
+    <a href="#process">Процесс</a>
+    <a href="#accordion">Аккордеон</a>
+    <a href="#tabs">Вкладки</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#logo-cloud">Логотипы</a>
+    <a href="#image-grid">Галерея</a>
+    <a href="#calc-cta">Calc-CTA</a>
+    <a href="#cta">CTA-секция</a>
+    <a href="#savings">Карточка выгоды</a>
+    <a href="#pkg-card">Пакет</a>
+    <a href="#form">Форма</a>
+    <a href="#contact-card">Контакты</a>
+    <a href="#legal">Документы</a>
+    <a href="#req-table">Реквизиты</a>
+</nav>
 
-  <h2>1. Базовая палитра</h2>
-  <div class="sw">
-    <div class="swatch"><div class="chip" style="background:#181431"></div><div class="meta"><div class="name">text</div><div class="hex">#181431</div><div class="use">основной текст</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#5B5B6B"></div><div class="meta"><div class="name">text-soft</div><div class="hex">#5B5B6B</div><div class="use">второстепенный</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#818181"></div><div class="meta"><div class="name">text-muted</div><div class="hex">#818181</div><div class="use">подписи, мета</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--c-line)"></div><div class="meta"><div class="name">bg</div><div class="hex">#FFFFFF</div><div class="use">фон</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#F6F7F9"></div><div class="meta"><div class="name">bg-gray</div><div class="hex">#F6F7F9</div><div class="use">section--gray</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#0F1B33"></div><div class="meta"><div class="name">bg-dark</div><div class="hex">#0F1B33</div><div class="use">section--dark</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#E5E7EB"></div><div class="meta"><div class="name">line</div><div class="hex">#E5E7EB</div><div class="use">разделители</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#0D75B2"></div><div class="meta"><div class="name">accent</div><div class="hex">#0D75B2</div><div class="use">акцент (синий)</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#0B6396"></div><div class="meta"><div class="name">accent-d</div><div class="hex">#0B6396</div><div class="use">hover</div></div></div>
-    <div class="swatch"><div class="chip" style="background:#DDEAF5"></div><div class="meta"><div class="name">accent-soft</div><div class="hex">#DDEAF5</div><div class="use">фон бейджей</div></div></div>
-  </div>
+<!-- ============ ВВЕДЕНИЕ ============ -->
+<section class="sg-section">
+    <div class="sg-label">Дизайн-система</div>
+    <h1 style="font-size:40px; font-weight:600; letter-spacing:-0.02em; margin-bottom:12px;">Компоненты DICOM TEAM</h1>
+    <p class="sg-desc">Справочник элементов сайта в одном месте. При сборке новых страниц — берёте нужные классы и применяете. Стили подключены из актуальных модулей <code>/local/templates/dicom_v2/css/*</code>, поэтому всё, что вы видите ниже — то же, что на боевых страницах.</p>
+    <p class="sg-desc">С мая 2026 каждое направление услуг имеет собственный цвет. Базовый акцент сайта — синий <code>#0D75B2</code>, но внутри блоков с классом <code>.dir-bitrix24</code> / <code>.dir-ai</code> / <code>.dir-web</code> / <code>.dir-design</code> переменная <code>--c-accent</code> переопределяется на цвет направления — и все компоненты внутри (бейджи, цифры, кнопки, ссылки) автоматически окрашиваются.</p>
+    <p class="sg-desc" style="margin-bottom:0;">Документ закрыт <code>noindex</code>. Не для индексации поисковиками.</p>
+</section>
 
-  <h2>2. Цвета направлений</h2>
-  <p class="sub">Каждое направление переопределяет <code>--c-accent</code> через класс <code>.dir-*</code>. Карточки ниже одинаковые — отличается только скоуп.</p>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
-    <div class="dircard dir-bitrix24"><span class="badge">Битрикс24</span><div class="num">01</div><p>Внедрение и доработка. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
-    <div class="dircard dir-ai"><span class="badge">ИИ</span><div class="num">02</div><p>Ассистенты и агенты. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
-    <div class="dircard dir-web"><span class="badge">Разработка</span><div class="num">03</div><p>Сайты на 1С-Битрикс. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
-    <div class="dircard dir-design"><span class="badge">Дизайн</span><div class="num">04</div><p>Интерфейсы и UX. <a class="ln" href="#">Подробнее →</a></p><div class="row"><button class="btn btn--ghost">Кнопка</button></div></div>
-  </div>
-  <div class="note">CTA-кнопка <code>.btn--primary</code> остаётся синей в любом направлении — она использует <code>--c-cta-primary</code>, а не <code>--c-accent</code>.</div>
+<!-- ============ 1. ЦВЕТА ============ -->
+<section class="sg-section" id="colors">
+    <div class="sg-label">01</div>
+    <h2 class="sg-title">Цвета</h2>
+    <p class="sg-desc">Все цвета хранятся в CSS-переменных в <code>dicom-design.css</code> (блок <code>:root</code>). Используйте переменные, не хардкодьте hex.</p>
 
-  <h2>3. Типографика — Roboto</h2>
-  <div class="card">
-    <div class="type-row"><span class="lab">700 Bold</span><span style="font-weight:700;font-size:30px">Заголовок H1</span></div>
-    <div class="type-row"><span class="lab">600 SemiBold</span><span style="font-weight:600;font-size:22px">Подзаголовок / цифры секций</span></div>
-    <div class="type-row"><span class="lab">500 Medium</span><span style="font-weight:500;font-size:17px">Акцентная подпись</span></div>
-    <div class="type-row"><span class="lab">400 Regular</span><span style="font-weight:400;font-size:16px">Основной текст. The quick brown fox. Съешь ещё этих булочек.</span></div>
-  </div>
+    <div class="sg-h3">Основные</div>
+    <div class="sg-row">
+        <div class="sg-swatch"><div class="sg-color" style="background:#181431"></div><div class="sg-color-name">Текст</div><div class="sg-color-value">#181431</div><div class="sg-color-var">--c-text</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#5B5B6B"></div><div class="sg-color-name">Текст soft</div><div class="sg-color-value">#5B5B6B</div><div class="sg-color-var">--c-text-soft</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#818181"></div><div class="sg-color-name">Текст muted</div><div class="sg-color-value">#818181</div><div class="sg-color-var">--c-text-muted</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#FFFFFF; border:1px solid #E2E5EA"></div><div class="sg-color-name">Фон</div><div class="sg-color-value">#FFFFFF</div><div class="sg-color-var">--c-bg</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#F6F7F9"></div><div class="sg-color-name">Фон gray</div><div class="sg-color-value">#F6F7F9</div><div class="sg-color-var">--c-bg-gray</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#0F1B33"></div><div class="sg-color-name">Фон dark</div><div class="sg-color-value">#0F1B33</div><div class="sg-color-var">--c-bg-dark</div></div>
+    </div>
 
-  <h2>4. Кнопки</h2>
-  <div class="card"><div class="row">
-    <button class="btn btn--primary">Primary (CTA)</button>
-    <button class="btn btn--ghost">Ghost</button>
-    <span class="dir-design"><button class="btn btn--ghost">Ghost в .dir-design</button></span>
-  </div></div>
+    <div class="sg-h3">Базовый акцент сайта (синий) — для CTA и общесайтовых элементов</div>
+    <div class="sg-row">
+        <div class="sg-swatch"><div class="sg-color" style="background:#0D75B2"></div><div class="sg-color-name">Акцент</div><div class="sg-color-value">#0D75B2</div><div class="sg-color-var">--c-accent</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#0B6396"></div><div class="sg-color-name">Акцент dark</div><div class="sg-color-value">#0B6396</div><div class="sg-color-var">--c-accent-d</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#DDEAF5"></div><div class="sg-color-name">Акцент soft</div><div class="sg-color-value">#DDEAF5</div><div class="sg-color-var">--c-accent-soft</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#0D75B2"></div><div class="sg-color-name">CTA primary</div><div class="sg-color-value">#0D75B2</div><div class="sg-color-var">--c-cta-primary</div></div>
+    </div>
+    <p class="sg-note"><code>--c-cta-primary</code> зафиксирован — основная кнопка «Начать проект» / «Открыть калькулятор» всегда синяя, даже внутри <code>.dir-*</code> блоков (это бренд-цвет всех CTA сайта).</p>
 
-  <h2>5. Бейджи</h2>
-  <div class="card"><div class="row">
-    <span class="badge">Базовый</span>
-    <span class="dir-bitrix24"><span class="badge">Битрикс24</span></span>
-    <span class="dir-ai"><span class="badge">ИИ</span></span>
-    <span class="dir-design"><span class="badge">Дизайн</span></span>
-  </div></div>
+    <div class="sg-h3">Цвета направлений (с мая 2026)</div>
+    <p class="sg-desc" style="margin-bottom:14px;">Каждое продуктовое направление имеет свою триаду: основной, dark (для hover/тёмных карточек), soft (для фона бейджей). RGB-тройки нужны для теней через <code>rgba(var(--c-dir-*-rgb), .X)</code>.</p>
 
-  <h2>6. Секции</h2>
-  <div class="sec sec--light">section--light<small>белая обёртка, тень --shadow-sm</small></div>
-  <div class="sec sec--gray">section--gray<small>фон #F6F7F9 — чтобы белые карточки отделялись</small></div>
-  <div class="sec sec--dark">section--dark<small>фон #0F1B33</small></div>
+    <div class="sg-dir-grid">
+        <div class="sg-dir-card">
+            <div class="sg-dir-card__head"><span class="sg-dir-card__dot" style="background:#0DACE5"></span>Битрикс24 — cyan</div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#0DACE5"></span><span class="sg-dir-card__var">--c-dir-bitrix</span><span class="sg-dir-card__hex">#0DACE5</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#0A85B0"></span><span class="sg-dir-card__var">--c-dir-bitrix-d</span><span class="sg-dir-card__hex">#0A85B0</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#DBF1F9"></span><span class="sg-dir-card__var">--c-dir-bitrix-soft</span><span class="sg-dir-card__hex">#DBF1F9</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:rgba(13,172,229,.18)"></span><span class="sg-dir-card__var">--c-dir-bitrix-rgb</span><span class="sg-dir-card__hex">13,172,229</span></div>
+        </div>
+        <div class="sg-dir-card">
+            <div class="sg-dir-card__head"><span class="sg-dir-card__dot" style="background:#0891B2"></span>ИИ — приглушённый cyan</div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#0891B2"></span><span class="sg-dir-card__var">--c-dir-ai</span><span class="sg-dir-card__hex">#0891B2</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#06738F"></span><span class="sg-dir-card__var">--c-dir-ai-d</span><span class="sg-dir-card__hex">#06738F</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#CEE9EE"></span><span class="sg-dir-card__var">--c-dir-ai-soft</span><span class="sg-dir-card__hex">#CEE9EE</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:rgba(8,145,178,.18)"></span><span class="sg-dir-card__var">--c-dir-ai-rgb</span><span class="sg-dir-card__hex">8,145,178</span></div>
+        </div>
+        <div class="sg-dir-card">
+            <div class="sg-dir-card__head"><span class="sg-dir-card__dot" style="background:#475569"></span>Разработка — графит</div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#475569"></span><span class="sg-dir-card__var">--c-dir-web</span><span class="sg-dir-card__hex">#475569</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#334155"></span><span class="sg-dir-card__var">--c-dir-web-d</span><span class="sg-dir-card__hex">#334155</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#E2E6EA"></span><span class="sg-dir-card__var">--c-dir-web-soft</span><span class="sg-dir-card__hex">#E2E6EA</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:rgba(71,85,105,.22)"></span><span class="sg-dir-card__var">--c-dir-web-rgb</span><span class="sg-dir-card__hex">71,85,105</span></div>
+        </div>
+        <div class="sg-dir-card">
+            <div class="sg-dir-card__head"><span class="sg-dir-card__dot" style="background:#BE185D"></span>Дизайн — бургунди-роуз</div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#BE185D"></span><span class="sg-dir-card__var">--c-dir-design</span><span class="sg-dir-card__hex">#BE185D</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#9D1450"></span><span class="sg-dir-card__var">--c-dir-design-d</span><span class="sg-dir-card__hex">#9D1450</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:#FAE3EC"></span><span class="sg-dir-card__var">--c-dir-design-soft</span><span class="sg-dir-card__hex">#FAE3EC</span></div>
+            <div class="sg-dir-card__row"><span class="sg-dir-card__sw" style="background:rgba(190,24,93,.18)"></span><span class="sg-dir-card__var">--c-dir-design-rgb</span><span class="sg-dir-card__hex">190,24,93</span></div>
+        </div>
+    </div>
 
-  <h2>7. Тени</h2>
-  <div class="sw">
-    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-sm)">--shadow-sm</div></div>
-    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow)">--shadow</div></div>
-    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-md)">--shadow-md</div></div>
-    <div class="card" style="box-shadow:none"><div class="box" style="box-shadow:var(--shadow-lg)">--shadow-lg</div></div>
-  </div>
+    <div class="sg-h3">Служебные</div>
+    <div class="sg-row">
+        <div class="sg-swatch"><div class="sg-color" style="background:#1a7f37"></div><div class="sg-color-name">Зелёный выгоды</div><div class="sg-color-value">#1a7f37</div><div class="sg-color-var">скидки, экономия</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#E5E7EB"></div><div class="sg-color-name">Линия</div><div class="sg-color-value">#E5E7EB</div><div class="sg-color-var">--c-line</div></div>
+        <div class="sg-swatch"><div class="sg-color" style="background:#EEF0F4"></div><div class="sg-color-name">Цифры 01-04</div><div class="sg-color-value">#EEF0F4</div><div class="sg-color-var">--c-number-light</div></div>
+    </div>
+</section>
 
-  <h2>8. Радиусы</h2>
-  <div class="sw">
-    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r-sm)">--r-sm 6px</div></div>
-    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r)">--r 16px</div></div>
-    <div class="card" style="box-shadow:none"><div class="box" style="border:1px solid var(--c-line);border-radius:var(--r-lg)">--r-lg 24px</div></div>
-  </div>
+<!-- ============ 2. НАПРАВЛЕНИЯ (dir-* модификаторы) ============ -->
+<section class="sg-section" id="directions">
+    <div class="sg-label">02</div>
+    <h2 class="sg-title">Модификаторы направлений (.dir-*)</h2>
+    <p class="sg-desc">Класс направления навешивается на <code>&lt;body&gt;</code> (или на любой контейнер) и локально переопределяет <code>--c-accent</code>, <code>--c-accent-d</code>, <code>--c-accent-soft</code>, <code>--c-accent-rgb</code>, <code>--c-bg-dark</code>. Все компоненты внутри, которые ссылаются на эти переменные, автоматически меняют цвет.</p>
 
-  <h2>9. Маскот</h2>
-  <div class="card"><div class="row">
-    <img src="../../mascot/assets/dikomych-parts-reference.png" alt="Дикомыч" style="max-width:100%;border-radius:var(--r-sm)">
-  </div><p class="sub">Полная спецификация — <code>mascot/dikomych.md</code> и <code>mascot/visual-spec.md</code>.</p></div>
+    <p class="sg-desc">Карта URL → класс (см. <code>header.php</code> строки 286-303):</p>
+    <ul style="color:var(--c-text-soft); margin:0 0 24px; padding-left:20px; list-style:disc;">
+        <li><code>/services/bitriks24/</code> → <code>.dir-bitrix24</code> (cyan)</li>
+        <li><code>/services/ai/</code> → <code>.dir-ai</code> (приглушённый cyan)</li>
+        <li><code>/services/App/</code> → <code>.dir-web</code> (графит)</li>
+        <li><code>/services/Design/</code> → <code>.dir-design</code> (бургунди-роуз)</li>
+    </ul>
 
-  <p class="sub" style="margin-top:40px">© DICOM TEAM. Стайлгайд синхронизируется с <code>colors/</code> и <code>tokens/</code>. При изменении токенов обнови и этот файл.</p>
+    <div class="sg-h3">Один и тот же компонент в четырёх направлениях</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+        <div class="dir-bitrix24">
+            <article class="card">
+                <div class="card__tag card__tag--accent">Битрикс24</div>
+                <h3 class="card__title">Внедрение CRM</h3>
+                <p class="card__text">Карточка внутри <code>.dir-bitrix24</code>: тег, цифра, ссылка — всё cyan.</p>
+                <a href="#" class="link-more">Подробнее →</a>
+            </article>
+        </div>
+        <div class="dir-ai">
+            <article class="card">
+                <div class="card__tag card__tag--accent">ИИ</div>
+                <h3 class="card__title">Чат-бот для сайта</h3>
+                <p class="card__text">Внутри <code>.dir-ai</code> акцент стал приглушённо-cyan.</p>
+                <a href="#" class="link-more">Подробнее →</a>
+            </article>
+        </div>
+        <div class="dir-web">
+            <article class="card">
+                <div class="card__tag card__tag--accent">Разработка</div>
+                <h3 class="card__title">Веб-приложение</h3>
+                <p class="card__text">В <code>.dir-web</code> акцент серо-графитовый.</p>
+                <a href="#" class="link-more">Подробнее →</a>
+            </article>
+        </div>
+        <div class="dir-design">
+            <article class="card">
+                <div class="card__tag card__tag--accent">Дизайн</div>
+                <h3 class="card__title">UI/UX и брендинг</h3>
+                <p class="card__text">В <code>.dir-design</code> акцент бургунди-роуз.</p>
+                <a href="#" class="link-more">Подробнее →</a>
+            </article>
+        </div>
+    </div>
+
+    <div class="sg-h3">Полоса-индикатор направления сверху страницы</div>
+    <p class="sg-desc" style="margin-bottom:14px;">На страницы услуг добавляется класс <code>has-direction-stripe</code> — он рисует 3px <code>box-shadow inset</code> цветом направления вверху <code>&lt;body&gt;</code>. Не сдвигает layout и не накладывается на админ-панель Битрикса.</p>
+
+    <div class="sg-demo" style="padding:0; overflow:hidden;">
+        <div style="box-shadow:inset 0 3px 0 #0DACE5; padding:28px;">
+            <div style="font-size:13px; color:var(--c-text-muted); margin-bottom:4px;">/services/bitriks24/</div>
+            <div style="font-weight:600;">cyan-полоса сверху</div>
+        </div>
+        <div style="box-shadow:inset 0 3px 0 #BE185D; padding:28px; border-top:1px solid var(--c-line);">
+            <div style="font-size:13px; color:var(--c-text-muted); margin-bottom:4px;">/services/Design/</div>
+            <div style="font-weight:600;">бургунди-полоса сверху</div>
+        </div>
+    </div>
+
+    <code class="sg-code">&lt;!-- header.php автоматически: --&gt;
+&lt;body class="dir-bitrix24 has-direction-stripe"&gt;
+
+&lt;!-- или вручную на любом контейнере: --&gt;
+&lt;section class="dir-ai"&gt;
+    &lt;!-- внутри --c-accent = #0891B2 --&gt;
+&lt;/section&gt;</code>
+
+    <p class="sg-note">CTA-кнопка остаётся синей (<code>--c-cta-primary</code>) даже внутри <code>.dir-*</code> блока — это бренд-цвет всех «Начать проект» / «Открыть калькулятор» сайта.</p>
+</section>
+
+<!-- ============ 3. ТИПОГРАФИКА ============ -->
+<section class="sg-section" id="typography">
+    <div class="sg-label">03</div>
+    <h2 class="sg-title">Типографика — Roboto</h2>
+    <p class="sg-desc">Веса: 300 / 400 / 500 / 600 / 700. Заголовки — 600, в hero — 600, основной текст — 400.</p>
+
+    <h1 style="font-size:clamp(40px,6vw,72px); font-weight:600; line-height:1.05; letter-spacing:-.02em; margin-bottom:14px;">Hero 72 / 600</h1>
+    <h2 style="font-size:clamp(28px,4.5vw,56px); font-weight:600; line-height:1.1; letter-spacing:-.02em; margin-bottom:14px;">Section title 56 / 600</h2>
+    <h3 style="font-size:clamp(20px,2.2vw,26px); font-weight:600; line-height:1.2; margin-bottom:14px;">Card title 26 / 600</h3>
+    <p style="font-size:20px; color:var(--c-text-soft); margin-bottom:10px;">Hero description 20 / 400, soft</p>
+    <p style="font-size:15px; color:var(--c-text-soft); margin-bottom:10px;">Body text 15 / 400 — основной текст в карточках и описаниях.</p>
+    <p style="font-size:13px; color:var(--c-text-muted);">Caption 13 / 400 muted — подписи, заметки.</p>
+</section>
+
+<!-- ============ 4. БЕЙДЖИ ============ -->
+<section class="sg-section" id="badges">
+    <div class="sg-label">04</div>
+    <h2 class="sg-title">Бейджи</h2>
+    <p class="sg-desc">Плашки-метки. Используются в hero и карточках. Внутри <code>.dir-*</code> акцентный бейдж автоматически окрашивается в цвет направления.</p>
+
+    <div class="sg-row">
+        <div class="badge badge--soft">Soft badge</div>
+        <div class="card__tag">Card tag</div>
+        <div class="card__tag card__tag--accent">Accent tag</div>
+    </div>
+
+    <div class="sg-h3">В разных направлениях</div>
+    <div class="sg-row">
+        <div class="dir-bitrix24"><div class="card__tag card__tag--accent">Битрикс24</div></div>
+        <div class="dir-ai"><div class="card__tag card__tag--accent">ИИ</div></div>
+        <div class="dir-web"><div class="card__tag card__tag--accent">Разработка</div></div>
+        <div class="dir-design"><div class="card__tag card__tag--accent">Дизайн</div></div>
+    </div>
+
+    <code class="sg-code">&lt;div class="badge badge--soft"&gt;Текст&lt;/div&gt;
+&lt;div class="card__tag"&gt;Категория&lt;/div&gt;
+&lt;div class="card__tag card__tag--accent"&gt;Важное&lt;/div&gt;</code>
+</section>
+
+<!-- ============ 5. КНОПКИ ============ -->
+<section class="sg-section" id="buttons">
+    <div class="sg-label">05</div>
+    <h2 class="sg-title">Кнопки</h2>
+    <p class="sg-desc">Primary — для главного действия, ghost — для вторичного, wide — на всю ширину (например, отправка формы). Primary использует <code>--c-cta-primary</code> (всегда синий бренд-цвет), ghost — текущий <code>--c-accent</code>, то есть в <code>.dir-*</code> окрашивается в цвет направления.</p>
+
+    <div class="sg-row">
+        <a class="btn btn--primary">Primary</a>
+        <a class="btn btn--ghost">Ghost</a>
+    </div>
+    <a class="btn btn--primary btn--wide" style="max-width:320px; margin-top:8px;">Wide primary</a>
+
+    <div class="sg-h3">Ghost в разных направлениях</div>
+    <div class="sg-row">
+        <div class="dir-bitrix24"><a class="btn btn--ghost">Битрикс24</a></div>
+        <div class="dir-ai"><a class="btn btn--ghost">ИИ</a></div>
+        <div class="dir-web"><a class="btn btn--ghost">Разработка</a></div>
+        <div class="dir-design"><a class="btn btn--ghost">Дизайн</a></div>
+    </div>
+
+    <div class="sg-h3">На тёмной секции</div>
+    <div class="sg-demo sg-demo--dark">
+        <div class="sg-row" style="margin:0;">
+            <a class="btn btn--primary">Primary</a>
+            <a class="btn btn--ghost">Ghost</a>
+        </div>
+    </div>
+    <p class="sg-note">На <code>.section--dark</code> ghost-кнопка автоматически светлеет.</p>
+
+    <code class="sg-code">&lt;a class="btn btn--primary"&gt;Начать проект&lt;/a&gt;
+&lt;a class="btn btn--ghost"&gt;Скачать прайс&lt;/a&gt;
+&lt;a class="btn btn--primary btn--wide"&gt;Отправить заявку&lt;/a&gt;</code>
+</section>
+
+<!-- ============ 6. ШАПКИ СЕКЦИЙ ============ -->
+<section class="sg-section" id="section-head">
+    <div class="sg-label">06</div>
+    <h2 class="sg-title">Шапки секций</h2>
+    <p class="sg-desc">Два варианта расположения цифры: справа от текста (<code>--right</code>) или слева (<code>--left</code>). На тёмной секции цифра становится синей.</p>
+
+    <div class="section-head section-head--right">
+        <div class="section-head__text">
+            <div class="section-head__sub">Подзаголовок</div>
+            <h2 class="section-head__title">Заголовок справа, цифра слева</h2>
+        </div>
+        <div class="section-head__number">01</div>
+    </div>
+
+    <div class="section-head section-head--left" style="margin-top:32px;">
+        <div class="section-head__text">
+            <div class="section-head__sub">Подзаголовок</div>
+            <h2 class="section-head__title">Заголовок слева, цифра справа</h2>
+        </div>
+        <div class="section-head__number">02</div>
+    </div>
+
+    <p class="sg-note">На сайте обычно используют через компонент <code>dicom:section_head</code> с параметрами SUBTITLE / TITLE / NUMBER / POSITION.</p>
+    <code class="sg-code">&lt;?$APPLICATION-&gt;IncludeComponent("dicom:section_head", ".default", [
+    "SUBTITLE" =&gt; "Услуги",
+    "TITLE"    =&gt; "Что мы делаем",
+    "NUMBER"   =&gt; "01",
+    "POSITION" =&gt; "right",
+]);?&gt;</code>
+</section>
+
+<!-- ============ 7. ФОНЫ СЕКЦИЙ ============ -->
+<section class="sg-section" id="sections">
+    <div class="sg-label">07</div>
+    <h2 class="sg-title">Фоны секций</h2>
+    <p class="sg-desc">Три типа фона. Чередуются для визуального ритма страницы.</p>
+
+    <div class="section section--light" style="margin:0 0 16px; padding:32px;">
+        <strong>section--light</strong> — белый остров, тонкая тень. Основной фон для блоков услуг, карточек, форматов.
+    </div>
+    <div class="section section--gray" style="margin:0 0 16px; padding:32px;">
+        <strong>section--gray</strong> — серый фон #F6F7F9. Для секций с белыми карточками внутри (кейсы, CTA-калькулятор), чтобы карточки «отделялись».
+    </div>
+    <div class="section section--dark" style="margin:0; padding:32px;">
+        <strong>section--dark</strong> — тёмный фон #0F1B33. Контрастная пауза в потоке. Блок «О нас», формы, footer. Внутри <code>.dir-*</code> тёмная секция перекрашивается в dark-вариант цвета направления.
+    </div>
+</section>
+
+<!-- ============ 8. КАРТОЧКИ ============ -->
+<section class="sg-section" id="cards">
+    <div class="sg-label">08</div>
+    <h2 class="sg-title">Карточка</h2>
+    <p class="sg-desc">Базовый компонент. Модификаторы: <code>--accent</code> (тёмная), <code>--wide</code> (на 2 колонки в grid-2), <code>--clickable</code> (вся карточка-ссылка, со стрелкой в углу).</p>
+
+    <div class="grid-3">
+        <article class="card">
+            <div class="card__tag">Битрикс24</div>
+            <h3 class="card__title">Обычная карточка</h3>
+            <p class="card__text">Светлый фон, тонкая тень, плашка-метка, заголовок и текст. На hover чуть поднимается и тень глубже.</p>
+            <div class="card__meta">от 60 000 ₽</div>
+        </article>
+        <article class="card">
+            <div class="card__tag card__tag--accent">ИИ</div>
+            <h3 class="card__title">С акцентной плашкой</h3>
+            <p class="card__text">Карточка с цветным тегом — для выделения важного направления в ряду.</p>
+            <div class="card__meta">от 120 000 ₽</div>
+        </article>
+        <article class="card card--accent">
+            <div class="card__tag">Партнёрам</div>
+            <h3 class="card__title">Тёмная карточка</h3>
+            <p class="card__text">Используется для выделения одной из карточек в ряду — партнёрка, премиум-тариф, флагман.</p>
+            <div class="card__meta">скидка до 40%</div>
+        </article>
+    </div>
+
+    <div class="sg-h3">Кликабельная карточка-ссылка</div>
+    <div class="grid-3">
+        <a href="#" class="card card--clickable">
+            <div class="card__tag">Услуга</div>
+            <h3 class="card__title">Кликабельная карточка</h3>
+            <p class="card__text">Вся карточка — <code>&lt;a&gt;</code>. Курсор-указатель, на hover синяя рамка и стрелка в углу.</p>
+            <span class="card__arrow">→</span>
+        </a>
+        <a href="#" class="card card--clickable card--accent">
+            <div class="card__tag">Акцент</div>
+            <h3 class="card__title">Тёмная кликабельная</h3>
+            <p class="card__text">На тач-устройствах (нет hover) стрелка видна всегда, чтобы было понятно что кликабельно.</p>
+            <span class="card__arrow">→</span>
+        </a>
+    </div>
+
+    <code class="sg-code">&lt;article class="card"&gt;
+    &lt;div class="card__tag"&gt;Категория&lt;/div&gt;
+    &lt;h3 class="card__title"&gt;Заголовок&lt;/h3&gt;
+    &lt;p class="card__text"&gt;Описание.&lt;/p&gt;
+    &lt;div class="card__meta"&gt;от 60 000 ₽&lt;/div&gt;
+&lt;/article&gt;
+
+&lt;a href="https://dicom.team/url/" class="card card--clickable"&gt;
+    &lt;div class="card__tag"&gt;Услуга&lt;/div&gt;
+    &lt;h3 class="card__title"&gt;Заголовок&lt;/h3&gt;
+    &lt;p class="card__text"&gt;Описание.&lt;/p&gt;
+    &lt;span class="card__arrow"&gt;→&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;article class="card card--accent"&gt; ... &lt;/article&gt;
+&lt;article class="card card--wide"&gt; ... &lt;/article&gt;</code>
+</section>
+
+<!-- ============ 9. КАРТОЧКИ-ССЫЛКИ (ХАБ УСЛУГ) ============ -->
+<section class="sg-section" id="service-cards">
+    <div class="sg-label">09</div>
+    <h2 class="sg-title">Карточки-ссылки (хаб услуг)</h2>
+    <p class="sg-desc">Используются на странице <code>/services/</code> как переходы в разделы. Каждая карточка кликабельна целиком, имеет цифру 01-04 и стрелку «Подробнее». Цвет каждой карточки задаётся классом направления.</p>
+
+    <div class="grid-3 services-hub">
+        <a href="https://dicom.team/services/bitriks24/" class="card services-hub__card dir-bitrix24">
+            <div class="services-hub__num">01</div>
+            <div class="card__tag card__tag--accent">Битрикс24</div>
+            <h3 class="card__title">Внедрение Битрикс24</h3>
+            <p class="card__text">CRM, бизнес-процессы, интеграции с 1С и телефонией.</p>
+            <span class="services-hub__more">Подробнее →</span>
+        </a>
+        <a href="https://dicom.team/services/ai/" class="card services-hub__card dir-ai">
+            <div class="services-hub__num">02</div>
+            <div class="card__tag card__tag--accent">ИИ</div>
+            <h3 class="card__title">ИИ-решения</h3>
+            <p class="card__text">Чат-боты, голос, OCR, корпоративный поиск.</p>
+            <span class="services-hub__more">Подробнее →</span>
+        </a>
+        <a href="https://dicom.team/services/App/" class="card services-hub__card dir-web">
+            <div class="services-hub__num">03</div>
+            <div class="card__tag card__tag--accent">Разработка</div>
+            <h3 class="card__title">Разработка приложений</h3>
+            <p class="card__text">Веб- и мобильные приложения под задачу.</p>
+            <span class="services-hub__more">Подробнее →</span>
+        </a>
+        <a href="https://dicom.team/services/Design/" class="card services-hub__card dir-design">
+            <div class="services-hub__num">04</div>
+            <div class="card__tag card__tag--accent">Дизайн</div>
+            <h3 class="card__title">UI/UX и брендинг</h3>
+            <p class="card__text">Дизайн интерфейсов, фирменный стиль, логотипы.</p>
+            <span class="services-hub__more">Подробнее →</span>
+        </a>
+    </div>
+
+    <p class="sg-note">На каждой карточке-ссылке навешен класс направления — поэтому тег, цифра, стрелка и hover-рамка окрашены индивидуально. Сетка <code>.grid-3</code> с модификатором <code>.services-hub__card</code>.</p>
+</section>
+
+<!-- ============ 10. КАРТОЧКИ ФОРМАТОВ РАБОТЫ ============ -->
+<section class="sg-section" id="format-cards">
+    <div class="sg-label">10</div>
+    <h2 class="sg-title">Карточки форматов работы</h2>
+    <p class="sg-desc">Блок 04 главной — пять форматов оплаты (T&amp;M, подписки, фикс, партнёрка). Кликабельны, ведут в калькулятор / форму / партнёрку.</p>
+
+    <div class="grid-3">
+        <article class="card">
+            <div class="card__tag">Time &amp; Material</div>
+            <h3 class="card__title">Разовая работа</h3>
+            <p class="card__text">Для точечных задач без жёсткого ТЗ. Оплата по факту, минимум 4 часа.</p>
+            <div class="card__meta">2 500 – 3 500 ₽/час</div>
+        </article>
+        <article class="card">
+            <div class="card__tag">Скидка 20%</div>
+            <h3 class="card__title">Недельная подписка</h3>
+            <p class="card__text">40 часов резерва. Эффективная ставка ~1 680 ₽/час.</p>
+            <div class="card__meta">от 84 000 ₽/нед</div>
+        </article>
+        <article class="card card--accent">
+            <div class="card__tag">Для агентств</div>
+            <h3 class="card__title">Партнёрская программа</h3>
+            <p class="card__text">Скидки 15–40%, White Label, отсрочка платежа.</p>
+            <div class="card__meta">от Bronze до Platinum</div>
+        </article>
+    </div>
+
+    <p class="sg-note">Через компонент <code>dicom:cards</code> с параметром <code>URL_PROPERTY</code> карточки становятся кликабельными (добавляется <code>.card--clickable</code> и <code>.card__arrow</code>).</p>
+</section>
+
+<!-- ============ 11. ПАРТНЁРСКИЕ УРОВНИ ============ -->
+<section class="sg-section" id="partner-tiers">
+    <div class="sg-label">11</div>
+    <h2 class="sg-title">Партнёрские уровни</h2>
+    <p class="sg-desc">Страница <code>/partners/</code>. 4 уровня скидок, последний (Platinum) — акцентный тёмный.</p>
+
+    <div class="grid-2">
+        <article class="card">
+            <div class="card__tag">Bronze</div>
+            <h3 class="card__title">Скидка 15%</h3>
+            <p class="card__text">Приоритетная очередь, выделенный менеджер.</p>
+            <div class="card__meta">Объём от 300 000 ₽ за 6 мес</div>
+        </article>
+        <article class="card">
+            <div class="card__tag">Silver</div>
+            <h3 class="card__title">Скидка 25%</h3>
+            <p class="card__text">Bronze + бесплатная оценка ТЗ, фикс-ставка на 6 мес.</p>
+            <div class="card__meta">Объём от 800 000 ₽ за 6 мес</div>
+        </article>
+        <article class="card">
+            <div class="card__tag">Gold</div>
+            <h3 class="card__title">Скидка 35%</h3>
+            <p class="card__text">Silver + White Label, отсрочка платежа до 30 дней.</p>
+            <div class="card__meta">Объём от 2 000 000 ₽ за 6 мес</div>
+        </article>
+        <article class="card card--accent">
+            <div class="card__tag">Platinum</div>
+            <h3 class="card__title">Скидка 40%</h3>
+            <p class="card__text">Gold + персональный технический директор, SLA.</p>
+            <div class="card__meta">Объём от 5 000 000 ₽ за 6 мес</div>
+        </article>
+    </div>
+    <p class="sg-note">Данные тянутся из инфоблока 82 (<code>dicom_pricing_partners</code>) через функцию <code>dicom_partner_tiers()</code>.</p>
+</section>
+
+<!-- ============ 12. MEDIA-ROW ============ -->
+<section class="sg-section" id="media-row">
+    <div class="sg-label">12</div>
+    <h2 class="sg-title">Media-row — картинка + текст</h2>
+    <p class="sg-desc">Базовый блок для услуг и кейсов. Картинка одной стороной, контент — другой. В серии <code>.media-rows</code> направление чередуется автоматически.</p>
+
+    <article class="media-row media-row--image-right" style="margin-bottom:48px;">
+        <div class="media-row__image">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&auto=format&fit=crop&q=70" alt="">
+        </div>
+        <div class="media-row__body">
+            <div class="media-row__tag">Битрикс24 + 1С</div>
+            <h3 class="media-row__title">Картинка справа</h3>
+            <p class="media-row__text">Базовый паттерн для кейса или услуги: заголовок, описание, список фактов, ссылка-CTA.</p>
+            <ul class="media-row__list">
+                <li>Заголовок с акцентным тегом</li>
+                <li>Краткое описание в 1-2 предложения</li>
+                <li>Список ключевых фактов</li>
+            </ul>
+            <a href="#" class="link-more">Подробнее →</a>
+        </div>
+    </article>
+
+    <article class="media-row media-row--image-left">
+        <div class="media-row__image">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=70" alt="">
+        </div>
+        <div class="media-row__body">
+            <div class="media-row__tag">ИИ-решения</div>
+            <h3 class="media-row__title">Картинка слева</h3>
+            <p class="media-row__text">То же самое, но картинка с другой стороны. Для визуального ритма при серии блоков.</p>
+            <ul class="media-row__list">
+                <li>На мобильных всё в одну колонку</li>
+                <li>Картинка всегда оказывается сверху</li>
+            </ul>
+            <a href="#" class="link-more">Подробнее →</a>
+        </div>
+    </article>
+    <p class="sg-note">Серия блоков с авточередованием: оборачиваем в <code>.media-rows</code>.</p>
+</section>
+
+<!-- ============ 13. HERO ============ -->
+<section class="sg-section" id="hero">
+    <div class="sg-label">13</div>
+    <h2 class="sg-title">Hero и hero-slider</h2>
+    <p class="sg-desc">Главная страница использует <code>hero-slider</code> из 4 слайдов с автопрокруткой. Внутренние страницы — одиночный <code>hero</code>.</p>
+
+    <div class="sg-demo sg-demo--white" style="padding:32px;">
+        <div class="badge badge--soft" style="margin-bottom:14px;">Официальный партнёр Битрикс24</div>
+        <h1 style="font-size:36px; font-weight:600; letter-spacing:-0.02em; margin-bottom:8px;">Цифровизуем бизнес без громких слов</h1>
+        <p style="color:var(--c-text-muted); margin-bottom:14px;"><b>DI</b>gitise your <b>COM</b>pany</p>
+        <p style="color:var(--c-text-soft); margin-bottom:18px; max-width:560px;">Внедрение Битрикс24, ИИ-решения и веб-разработка — для компаний, которым нужен понятный результат.</p>
+        <div style="display:flex; gap:10px;">
+            <a class="btn btn--primary">Начать проект</a>
+            <a class="btn btn--ghost">Скачать прайс</a>
+        </div>
+    </div>
+    <p class="sg-note">Компонент <code>dicom:hero</code> с параметрами BADGE / TITLE / TAGLINE_HTML / DESCRIPTION / BTN1_* / BTN2_*. На главной — <code>hero-slider</code> через <code>window.DICOM.slider</code>.</p>
+</section>
+
+<!-- ============ 14. СТАТИСТИКА ============ -->
+<section class="sg-section" id="stats">
+    <div class="sg-label">14</div>
+    <h2 class="sg-title">Статистика — числа с подписями</h2>
+    <p class="sg-desc">Блок «5 лет / 80+ внедрений / 24 партнёра». 4 колонки на десктопе, 2 на планшете, 1 на мобильном. Левая граница и «плюс» — акцентным цветом текущего скоупа.</p>
+
+    <div class="stats">
+        <div class="stat"><div class="stat__value">5<span>+</span></div><div class="stat__label">лет на рынке</div></div>
+        <div class="stat"><div class="stat__value">80<span>+</span></div><div class="stat__label">Внедрений Битрикс24</div></div>
+        <div class="stat"><div class="stat__value">24<span>+</span></div><div class="stat__label">партнёров и клиентов</div></div>
+        <div class="stat"><div class="stat__value">99<span>%</span></div><div class="stat__label">SLA по поддержке</div></div>
+    </div>
+
+    <code class="sg-code">&lt;div class="stats"&gt;
+    &lt;div class="stat"&gt;
+        &lt;div class="stat__value"&gt;80&lt;span&gt;+&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="stat__label"&gt;Внедрений Битрикс24&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</section>
+
+<!-- ============ 15. ПРОЦЕСС ============ -->
+<section class="sg-section" id="process">
+    <div class="sg-label">15</div>
+    <h2 class="sg-title">Процесс — этапы работы</h2>
+    <p class="sg-desc">Тайм-лайн из 4 шагов. Кругляк с цифрой, между ними — соединительная линия. На hover кругляк подкрашивается акцентом.</p>
+
+    <ol class="process">
+        <li class="process__step"><div class="process__num">1</div><div class="process__body"><h4 class="process__title">Аудит</h4><p>Изучаем процессы, фиксируем точки роста.</p></div></li>
+        <li class="process__step"><div class="process__num">2</div><div class="process__body"><h4 class="process__title">ТЗ</h4><p>Согласовываем объём работ и сроки.</p></div></li>
+        <li class="process__step"><div class="process__num">3</div><div class="process__body"><h4 class="process__title">Внедрение</h4><p>Поэтапно настраиваем и тестируем.</p></div></li>
+        <li class="process__step"><div class="process__num">4</div><div class="process__body"><h4 class="process__title">Поддержка</h4><p>Сопровождаем после запуска.</p></div></li>
+    </ol>
+</section>
+
+<!-- ============ 16. АККОРДЕОН ============ -->
+<section class="sg-section" id="accordion">
+    <div class="sg-label">16</div>
+    <h2 class="sg-title">Аккордеон (FAQ)</h2>
+    <p class="sg-desc">На <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>. Не требует JS. Иконка-плюс справа становится крестом при раскрытии.</p>
+
+    <div class="accordion">
+        <details class="accordion__item" open>
+            <summary class="accordion__head">Сколько стоит внедрение Битрикс24?<span class="accordion__icon"></span></summary>
+            <div class="accordion__body"><p>Зависит от объёма работ. Базовая настройка CRM — от 60 000 ₽, под ключ с интеграциями — от 250 000 ₽. Используйте калькулятор для предварительной оценки.</p></div>
+        </details>
+        <details class="accordion__item">
+            <summary class="accordion__head">Какие есть форматы оплаты?<span class="accordion__icon"></span></summary>
+            <div class="accordion__body"><p>Time &amp; Material (почасовая), фикс по ТЗ, недельная/месячная подписка с резервом часов, партнёрская программа с отсрочкой.</p></div>
+        </details>
+        <details class="accordion__item">
+            <summary class="accordion__head">Работаете с другими CRM, кроме Битрикс24?<span class="accordion__icon"></span></summary>
+            <div class="accordion__body"><p>Основная специализация — Битрикс24 (мы официальный партнёр). Можем сделать интеграции, но новое внедрение — только Битрикс24.</p></div>
+        </details>
+    </div>
+</section>
+
+<!-- ============ 17. ВКЛАДКИ ============ -->
+<section class="sg-section" id="tabs">
+    <div class="sg-label">17</div>
+    <h2 class="sg-title">Вкладки</h2>
+    <p class="sg-desc">Активная вкладка подчёркнута цветом текущего <code>--c-accent</code>. Активация через JS — <code>main.js</code>, по <code>data-tab</code> ↔ <code>id</code> панели.</p>
+
+    <div class="tabs">
+        <button class="tabs__btn is-active" data-tab="t1">Битрикс24</button>
+        <button class="tabs__btn" data-tab="t2">ИИ</button>
+        <button class="tabs__btn" data-tab="t3">Разработка</button>
+    </div>
+    <div class="tabs-panels">
+        <div class="tabs-panel is-active" id="t1"><p style="color:var(--c-text-soft);">CRM, бизнес-процессы, интеграции с 1С, обучение. От 60 000 ₽.</p></div>
+        <div class="tabs-panel" id="t2"><p style="color:var(--c-text-soft);">Чат-боты, голос, OCR, корпоративный поиск. От 120 000 ₽.</p></div>
+        <div class="tabs-panel" id="t3"><p style="color:var(--c-text-soft);">Веб- и мобильные приложения. От 250 000 ₽.</p></div>
+    </div>
+</section>
+
+<!-- ============ 18. ТАРИФЫ ============ -->
+<section class="sg-section" id="pricing">
+    <div class="sg-label">18</div>
+    <h2 class="sg-title">Тарифная таблица</h2>
+    <p class="sg-desc">Колонки с тарифами. Один — featured (тёмный, выделенный). Пункты с галочкой — включено, с крестиком (<code>.pricing__no</code>) — недоступно.</p>
+
+    <div class="pricing">
+        <div class="pricing__col">
+            <div class="pricing__head"><div class="pricing__tier">Bronze</div><div class="pricing__price">15%</div><div class="pricing__sub">скидка</div></div>
+            <ul class="pricing__list"><li>Приоритетная очередь</li><li>Выделенный менеджер</li><li class="pricing__no">White Label</li><li class="pricing__no">Отсрочка платежа</li></ul>
+        </div>
+        <div class="pricing__col pricing__col--featured">
+            <div class="pricing__head"><div class="pricing__tier">Silver</div><div class="pricing__price">25%</div><div class="pricing__sub">скидка</div></div>
+            <ul class="pricing__list"><li>Всё из Bronze</li><li>Бесплатная оценка ТЗ</li><li>Фикс-ставка на 6 мес</li><li class="pricing__no">White Label</li></ul>
+        </div>
+        <div class="pricing__col">
+            <div class="pricing__head"><div class="pricing__tier">Gold</div><div class="pricing__price">35%</div><div class="pricing__sub">скидка</div></div>
+            <ul class="pricing__list"><li>Всё из Silver</li><li>White Label</li><li>Отсрочка до 30 дней</li></ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 19. ЛОГОТИПЫ ============ -->
+<section class="sg-section" id="logo-cloud">
+    <div class="sg-label">19</div>
+    <h2 class="sg-title">Логотипы клиентов / партнёров</h2>
+    <p class="sg-desc">Сетка логотипов в grayscale. На hover — цвет восстанавливается, лёгкий подъём. Если нет картинки — placeholder.</p>
+
+    <div class="logo-cloud">
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">ROMANA</div></div>
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">Берсеркер</div></div>
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">Элмаф</div></div>
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">Элтех</div></div>
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">Вкус Мебели</div></div>
+        <div class="logo-cloud__item"><div class="logo-cloud__placeholder">Хайтекмедиа</div></div>
+    </div>
+</section>
+
+<!-- ============ 20. ГАЛЕРЕЯ ============ -->
+<section class="sg-section" id="image-grid">
+    <div class="sg-label">20</div>
+    <h2 class="sg-title">Галерея изображений</h2>
+    <p class="sg-desc">Сетка картинок с оверлеем при hover. Модификаторы количества колонок: <code>--cols-3 / --cols-4 / --cols-5 / --cols-6</code> или <code>--auto</code>. Вариант <code>--plain</code> — без оверлея.</p>
+
+    <div class="image-grid image-grid--cols-3">
+        <a href="#" class="image-grid__item">
+            <img class="image-grid__img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=70" alt="">
+            <div class="image-grid__overlay"><div class="image-grid__title">Кейс ROMANA</div><div class="image-grid__text">Битрикс24 + 1С</div></div>
+        </a>
+        <a href="#" class="image-grid__item">
+            <img class="image-grid__img" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=70" alt="">
+            <div class="image-grid__overlay"><div class="image-grid__title">Кейс Берсеркер</div><div class="image-grid__text">Сайт + CRM</div></div>
+        </a>
+        <a href="#" class="image-grid__item">
+            <img class="image-grid__img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=70" alt="">
+            <div class="image-grid__overlay"><div class="image-grid__title">Кейс Элмаф</div><div class="image-grid__text">Веб-приложение</div></div>
+        </a>
+    </div>
+</section>
+
+<!-- ============ 21. CALC-CTA ============ -->
+<section class="sg-section" id="calc-cta">
+    <div class="sg-label">21</div>
+    <h2 class="sg-title">Calc-CTA — зов в калькулятор</h2>
+    <p class="sg-desc">Горизонтальная плашка: бейдж + заголовок + описание слева, кнопка справа. На мобильных складывается в столбец. Есть тёмный вариант для <code>section--dark</code>.</p>
+
+    <div class="calc-cta">
+        <div class="calc-cta__text">
+            <div class="badge badge--soft">Калькулятор</div>
+            <div class="calc-cta__title">Прикиньте бюджет за 2 минуты</div>
+            <div class="calc-cta__desc">Соберите конфигурацию из направлений и опций — получите предварительную оценку.</div>
+        </div>
+        <a class="btn btn--primary" href="https://dicom.team/calculator/">Открыть калькулятор →</a>
+    </div>
+</section>
+
+<!-- ============ 22. CTA-СЕКЦИЯ ============ -->
+<section class="sg-section" id="cta">
+    <div class="sg-label">22</div>
+    <h2 class="sg-title">CTA-секция (центрированная)</h2>
+    <p class="sg-desc">Призыв к действию: бейдж + заголовок + короткое описание + одна кнопка по центру.</p>
+
+    <div class="sg-demo" style="text-align:center; padding:48px 24px;">
+        <div class="badge badge--soft" style="margin-bottom:14px;">Калькулятор</div>
+        <h2 style="font-size:32px; font-weight:600; line-height:1.15; letter-spacing:-0.02em; margin-bottom:10px;">Прикиньте бюджет до разговора</h2>
+        <p style="color:var(--c-text-soft); font-size:16px; margin-bottom:22px; max-width:560px; margin-left:auto; margin-right:auto;">Соберите конфигурацию из направлений и опций — получите предварительную стоимость за минуту.</p>
+        <a class="btn btn--primary">Открыть калькулятор →</a>
+    </div>
+</section>
+
+<!-- ============ 23. SAVINGS-CARD ============ -->
+<section class="sg-section" id="savings">
+    <div class="sg-label">23</div>
+    <h2 class="sg-title">Savings-card — карточка выгоды</h2>
+    <p class="sg-desc">Отдельный компонент <code>.savings-card</code> — для финальной плашки калькулятора и страниц услуг. Показывает: цену пакета, перечёркнутую сумму работ, зелёный бейдж экономии, список работ в 2 колонки.</p>
+
+    <div class="savings-card">
+        <div class="badge badge--soft">Комплексное внедрение</div>
+        <div class="savings-card__prices">
+            <div class="savings-card__price">250 000 ₽</div>
+            <div class="savings-card__full">410 000 ₽</div>
+        </div>
+        <div class="savings-card__badge">Выгода 160 000 ₽ (−40%)</div>
+        <div class="savings-card__label">Что входит</div>
+        <ul class="savings-card__works">
+            <li>Аудит процессов</li>
+            <li>Настройка воронок</li>
+            <li>Бизнес-процессы</li>
+            <li>Интеграция с 1С</li>
+            <li>Настройка телефонии</li>
+            <li>Обучение сотрудников</li>
+        </ul>
+        <p class="savings-card__note">Срок реализации: 6–8 недель. Гарантия 90 дней после сдачи.</p>
+    </div>
+</section>
+
+<!-- ============ 24. PKG-CARD ============ -->
+<section class="sg-section" id="pkg-card">
+    <div class="sg-label">24</div>
+    <h2 class="sg-title">Pkg-card — карточка пакета с раскрытием</h2>
+    <p class="sg-desc">На страницах услуг — карточка с ценой, выгодой и кнопкой-toggle, которая раскрывает состав работ. Данные через функцию <code>dicom_package_savings($code)</code>.</p>
+
+    <article class="card" style="max-width:480px;">
+        <div class="card__tag">Битрикс24</div>
+        <h3 class="card__title">CRM-старт</h3>
+        <p class="card__text">Базовая настройка CRM под небольшой отдел продаж.</p>
+        <span class="pkg-card__badge">Выгода 50 000 ₽ (−33%)</span>
+        <div class="pkg-card__prices">
+            <div class="pkg-card__price">100 000 ₽</div>
+            <div class="pkg-card__full">150 000 ₽</div>
+        </div>
+        <button type="button" class="pkg-card__toggle" aria-expanded="false">
+            <span class="pkg-card__chev">›</span>
+            <span>Состав пакета (4 работы)</span>
+        </button>
+    </article>
+
+    <p class="sg-note">Toggle раскрывается через <code>pkg-card.js</code> (атрибут <code>aria-expanded</code>). Шеврон поворачивается на 90°.</p>
+</section>
+
+<!-- ============ 25. ФОРМА ============ -->
+<section class="sg-section" id="form">
+    <div class="sg-label">25</div>
+    <h2 class="sg-title">Форма заявки</h2>
+    <p class="sg-desc">Двухколоночная: текст слева, поля справа. На мобильных — в одну колонку. Есть статусы успеха/ошибки/информации.</p>
+
+    <div class="form-card" style="background:var(--c-bg); padding:32px; border-radius:var(--r); border:1px solid var(--c-line);">
+        <div class="form-card__left">
+            <div class="badge badge--soft" style="margin-bottom:18px;">Свяжитесь с нами</div>
+            <h2 style="font-size:28px; font-weight:600; letter-spacing:-0.02em; margin-bottom:14px;">Обсудить проект</h2>
+            <p style="color:var(--c-text-soft); margin-bottom:14px;">Опишите задачу — пришлём КП со сметой и сроками.</p>
+            <p style="font-size:14px; color:var(--c-text-muted);">Ответим в течение 1 рабочего дня.</p>
+        </div>
+        <div class="form-card__right">
+            <input type="text" placeholder="Имя *">
+            <input type="text" placeholder="Компания и сфера *">
+            <textarea placeholder="Описание задачи *" rows="2"></textarea>
+            <input type="tel" placeholder="+7 ___ ___-__-__ *">
+            <input type="email" placeholder="Email *">
+            <label class="form-card__terms"><input type="checkbox"><span>Нажимая на кнопку, я принимаю условия <a href="https://dicom.team/policy/">соглашения</a>.</span></label>
+            <button class="btn btn--primary btn--wide" type="button">Отправить заявку</button>
+        </div>
+    </div>
+
+    <p class="sg-note">Компонент <code>dicom:form</code>. Параметры: BADGE, TITLE, DESCRIPTION, NOTE, FORM_ACTION, FROM_SERVICE, ANCHOR_ID, POLICY_URL. Обработчик — <code>/local/components/dicom/form/action.php</code>: антиспам, создаёт лид в Битрикс24. Статусы: <code>.form-card__status--success / --error / --info</code>.</p>
+</section>
+
+<!-- ============ 26. КОНТАКТЫ ============ -->
+<section class="sg-section" id="contact-card">
+    <div class="sg-label">26</div>
+    <h2 class="sg-title">Контактные карточки и каналы</h2>
+    <p class="sg-desc">Страница <code>/contacts/</code>. Контакт-карточка с label/title/phone/email и hover-эффектом. Каналы для мессенджеров (WhatsApp, Telegram).</p>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-card__label">Отдел продаж</div>
+            <div class="contact-card__title">Алексей Бакшандаев</div>
+            <a href="tel:+78352000000" class="contact-card__phone">+7 (8352) 00-00-00</a>
+            <a href="mailto:hello@dicom.team" class="contact-card__email">hello@dicom.team</a>
+            <p class="contact-card__note">Пн–Пт 9:00–18:00 МСК</p>
+        </div>
+        <div class="contact-card">
+            <div class="contact-card__label">Поддержка</div>
+            <div class="contact-card__title">Тех. поддержка клиентов</div>
+            <a href="tel:+78352000001" class="contact-card__phone">+7 (8352) 00-00-01</a>
+            <a href="mailto:support@dicom.team" class="contact-card__email">support@dicom.team</a>
+            <p class="contact-card__note">Время ответа — до 4 часов</p>
+        </div>
+    </div>
+
+    <div class="sg-h3">Каналы (мессенджеры)</div>
+    <div class="channels">
+        <a href="#" class="channel"><span class="channel__icon">W</span><span class="channel__label">WhatsApp</span></a>
+        <a href="#" class="channel"><span class="channel__icon">T</span><span class="channel__label">Telegram</span></a>
+    </div>
+</section>
+
+<!-- ============ 27. ДОКУМЕНТ ============ -->
+<section class="sg-section" id="legal">
+    <div class="sg-label">27</div>
+    <h2 class="sg-title">Документ-страница</h2>
+    <p class="sg-desc">Политика, оферта, реквизиты. Класс-обёртка <code>.legal</code> задаёт типографику для длинного текста.</p>
+
+    <div class="legal" style="max-width:720px;">
+        <p class="legal__upd" style="color:var(--c-text-muted); font-size:14px; margin-bottom:18px;">Редакция от 25 мая 2026 г.</p>
+        <h3 style="font-size:19px; font-weight:600; margin:18px 0 8px;">1. Заголовок раздела</h3>
+        <p style="color:var(--c-text-soft); margin-bottom:10px;">Абзац длинного текста. Используется на страницах политики, оферты. Ссылки <a href="#" style="color:var(--c-accent); text-decoration:underline;">оформляются акцентом</a>.</p>
+        <ul style="padding-left:0; list-style:none; margin-bottom:10px;">
+            <li style="position:relative; padding-left:22px; color:var(--c-text-soft); margin-bottom:4px;"><span style="position:absolute; left:0; top:10px; width:12px; height:2px; background:var(--c-accent);"></span>Пункт списка с акцентным маркером</li>
+            <li style="position:relative; padding-left:22px; color:var(--c-text-soft); margin-bottom:4px;"><span style="position:absolute; left:0; top:10px; width:12px; height:2px; background:var(--c-accent);"></span>Второй пункт</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============ 28. РЕКВИЗИТЫ ============ -->
+<section class="sg-section" id="req-table">
+    <div class="sg-label">28</div>
+    <h2 class="sg-title">Таблица реквизитов</h2>
+    <p class="sg-desc">Используется на <code>/requisites/</code>. Подпись слева (muted), значение справа.</p>
+
+    <div style="max-width:560px;">
+        <table style="width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--c-line); border-radius:var(--r); overflow:hidden;">
+            <tr><td style="padding:12px 16px; border-bottom:1px solid var(--c-line); width:38%; color:var(--c-text-muted); font-size:14px;">ИНН</td><td style="padding:12px 16px; border-bottom:1px solid var(--c-line); font-weight:500;">212906995375</td></tr>
+            <tr><td style="padding:12px 16px; border-bottom:1px solid var(--c-line); width:38%; color:var(--c-text-muted); font-size:14px;">ОГРНИП</td><td style="padding:12px 16px; border-bottom:1px solid var(--c-line); font-weight:500;">321213000010599</td></tr>
+            <tr><td style="padding:12px 16px; width:38%; color:var(--c-text-muted); font-size:14px;">Юр. адрес</td><td style="padding:12px 16px; font-weight:500;">428000, г. Чебоксары, пр. Ленина, 18</td></tr>
+        </table>
+    </div>
+</section>
+
+<section class="sg-section" style="border-bottom:0; text-align:center; color:var(--c-text-muted); font-size:13px;">
+    <p>Дизайн-система DICOM TEAM · 28 разделов · Закрыта <code>noindex</code></p>
+    <p>Обновлено: май 2026 · Добавлена палитра направлений</p>
+</section>
 
 </div>
 </body>

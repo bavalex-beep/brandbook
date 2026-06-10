@@ -27,6 +27,10 @@
 
 > 800 (ExtraBold) на сайте не используем — в боевом CSS он встречается единично и каноном не является.
 
+## Документы и печать
+
+В Word/PDF-документах (КП, письма, сметы) используем **Arial** — он универсально открывается у клиента без подстановок. Roboto оставляем для веба. Подробнее об оформлении документов — [`../templates/documents/README.md`](../templates/documents/README.md).
+
 ## Подключение
 
 **Вариант А — Google Fonts** (быстро, без файлов): см. [`webfonts.css`](webfonts.css), подключает Roboto 400/500/600/700.
@@ -37,7 +41,7 @@
 
 ## Шкала
 
-Размеры заголовков и текста масштабируются от базового body. Точные значения — в стайлгайде: [`../components/styleguide/index.html`](../components/styleguide/index.html) (офлайн) или `https://dicom.team/styleguide/` (когда восстановлен на сайте).
+Размеры заголовков и текста масштабируются от базового body. Точные значения — в стайлгайде: [`../components/styleguide/index.html`](../components/styleguide/index.html) (офлайн) или `https://dicom.team/styleguide/`.
 
 ## Применение
 
